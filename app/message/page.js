@@ -16,18 +16,15 @@ const Message = () => {
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
-        console.log(formData);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('https://cloudsking.com/react_api.php', formData);
-            setApiResponse(response.data);
-            console.log(response.data);
+            const response = await axios.post('/api/proxy', formData);
+            setApiResponse(response.data.message);
         } catch (error) {
             setApiResponse(error.message);
-            console.log(error.message);
         }
     };
 
